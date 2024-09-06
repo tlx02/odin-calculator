@@ -1,0 +1,38 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    width: 200px;
+    height: 200px;
+}
+
+.display {
+    text-align: right;
+    padding: 8px;
+    font-size: 20px;
+}
+
+.row {
+    display: flex;
+    padding: 4px;
+    justify-content: space-around;
+    gap: 8px;
+}
+
+.clearRow {
+    display: flex;
+    padding: 4px;
+    justify-content: right;
+    gap: 8px;
+}
+
+button {
+    padding: 8px;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+}
+
+.clearButton {
+    width: 80px;
+}
