@@ -21,16 +21,20 @@ function operate(val1, operator, val2) {
 let firstNumber = "";
 let secondNumber = "";
 let operator = "";
-let displayString = " ";
+let displayString = "";
 
 let display = document.querySelector(".display");
 let values = document.querySelectorAll(".value");
 let operators = document.querySelectorAll(".operator");
 let equal = document.querySelector(".equal");
+let clear = document.querySelector(".clearButton");
 
 for (let i = 0; i < values.length; i++) {
     const node = values[i];
     node.addEventListener("click", () => {
+        if (firstNumber != "" && operator == "") {
+            firstNumber = "";
+        }
         displayString += node.textContent;
         display.textContent = displayString;
     });
@@ -45,7 +49,7 @@ for (let j = 0; j < operators.length; j++) {
             console.log('else');
             firstNumber = displayString;
         }
-        displayString = " ";
+        displayString = "";
         operator = node;
     });
 }
@@ -69,10 +73,14 @@ equal.addEventListener("click", () => {
     display.textContent = displayString;
     firstNumber = displayString;
     secondNumber = "";
+    displayString = "";
+    operator = "";
 });
 
-
-// buttonNames = []
-// let displayString = "";
-
-// for (let )
+clear.addEventListener("click", () => {
+    firstNumber = "";
+    secondNumber = "";
+    operator = "";
+    displayString = "";
+    display.textContent = " ";
+})
