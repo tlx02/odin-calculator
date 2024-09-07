@@ -7,9 +7,15 @@
 }
 
 .display {
+    height: 20px;
     text-align: right;
     padding: 8px;
+    margin: 8px;
     font-size: 20px;
+    color: grey;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border: dashed 2px black;
+    flex-grow: 1;
 }
 
 .row {
@@ -31,6 +37,7 @@ button {
     height: 40px;
     width: 40px;
     text-align: center;
+    background-color: aquamarine;
 }
 
 .clearButton {
