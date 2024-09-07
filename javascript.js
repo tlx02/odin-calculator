@@ -18,13 +18,12 @@ function operate(val1, operator, val2) {
     return operator(Number(val1), Number(val2));
 }
 
-let firstNumber;
-let secondNumber;
-let operator;
-
+let firstNumber = "";
+let secondNumber = "";
+let operator = "";
 let displayString = " ";
-display = document.querySelector(".display");
 
+let display = document.querySelector(".display");
 let values = document.querySelectorAll(".value");
 let operators = document.querySelectorAll(".operator");
 let equal = document.querySelector(".equal");
@@ -40,13 +39,17 @@ for (let i = 0; i < values.length; i++) {
 for (let j = 0; j < operators.length; j++) {
     const node = operators[j];
     node.addEventListener("click", () => {
-        firstNumber = displayString;
-        displayString = "";
+        if (firstNumber != "") {
+            equal.click();
+        } else {
+            console.log('else');
+            firstNumber = displayString;
+        }
+        displayString = " ";
         operator = node;
     });
 }
 
-console.log(equal)
 equal.addEventListener("click", () => {
     secondNumber = displayString;
     switch (operator.id) {
@@ -64,6 +67,8 @@ equal.addEventListener("click", () => {
             break;
     }
     display.textContent = displayString;
+    firstNumber = displayString;
+    secondNumber = "";
 });
 
 
