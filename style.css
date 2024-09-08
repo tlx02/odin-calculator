@@ -40,6 +40,10 @@ button {
     background-color: aquamarine;
 }
 
+.operator, .equal, .clearButton {
+    background-color:aqua;
+}
+
 .clearButton {
     width: 80px;
 }
