@@ -18,6 +18,23 @@ function operate(val1, operator, val2) {
     return operator(Number(val1), Number(val2));
 }
 
+function getResult() {
+    switch (operator.id) {
+        case "divide":
+            return operate(firstNumber, divide, secondNumber);
+            break;
+        case "multiply":
+            return operate(firstNumber, multiply, secondNumber);
+            break;
+        case "add":
+            return operate(firstNumber, add, secondNumber);
+            break;
+        case "subtract":
+            return operate(firstNumber, subtract, secondNumber);
+            break;
+    }
+}
+
 let firstNumber = "";
 let secondNumber = "";
 let operator = "";
@@ -33,10 +50,10 @@ let back = document.querySelector(".backSpace");
 for (let i = 0; i < values.length; i++) {
     const node = values[i];
     node.addEventListener("click", () => {
-        if (firstNumber != "" && operator == "") {
+        if (firstNumber && !operator) {
             firstNumber = "";
         }
-        displayString += node.textContent;
+        displayString += node.textContent
         display.textContent = displayString;
     });
 }
@@ -44,34 +61,26 @@ for (let i = 0; i < values.length; i++) {
 for (let j = 0; j < operators.length; j++) {
     const node = operators[j];
     node.addEventListener("click", () => {
-        if (firstNumber != "") {
-            equal.click();
-        } else {
-            firstNumber = displayString;
+        if (firstNumber && operator) {
+            // waiting for equal
+            secondNumber = display.textContent;
+            let result = getResult();
+            display.textContent = result;
+            firstNumber = result;
+        } else if (!firstNumber && !secondNumber && !operator) {
+            // start of new equation
+            firstNumber = display.textContent;
         }
         displayString = "";
+        secondNumber = "";
         operator = node;
     });
 }
 
 equal.addEventListener("click", () => {
-    secondNumber = displayString;
-    switch (operator.id) {
-        case "divide":
-            displayString = operate(firstNumber, divide, secondNumber);
-            break;
-        case "multiply":
-            displayString = operate(firstNumber, multiply, secondNumber);
-            break;
-        case "add":
-            displayString = operate(firstNumber, add, secondNumber);
-            break;
-        case "subtract":
-            displayString = operate(firstNumber, subtract, secondNumber);
-            break;
-    }
-    display.textContent = displayString;
-    firstNumber = displayString;
+    secondNumber = display.textContent;
+    display.textContent = getResult();
+    firstNumber = "";
     secondNumber = "";
     displayString = "";
     operator = "";
@@ -88,6 +97,5 @@ clear.addEventListener("click", () => {
 back.addEventListener("click", () => {
     if (display.textContent != "") {
         display.textContent = display.textContent.slice(0, -1);
-        displayString = displayString.slice(0, -1);
     }
 })
