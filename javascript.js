@@ -18,6 +18,13 @@ function operate(val1, operator, val2) {
     return operator(Number(val1), Number(val2));
 }
 
+function displayNumber(num) {
+    if (String(num).length < 10) {
+        return num;
+    }
+    return Number(num).toExponential(5);
+}
+
 function getResult() {
     switch (operator.id) {
         case "divide":
@@ -54,7 +61,7 @@ for (let i = 0; i < values.length; i++) {
             firstNumber = "";
         }
         displayString += node.textContent
-        display.textContent = displayString;
+        display.textContent = displayNumber(displayString);
     });
 }
 
@@ -65,7 +72,7 @@ for (let j = 0; j < operators.length; j++) {
             // waiting for equal
             secondNumber = display.textContent;
             let result = getResult();
-            display.textContent = result;
+            display.textContent = displayNumber(result);
             firstNumber = result;
         } else if (!firstNumber && !secondNumber && !operator) {
             // start of new equation
@@ -79,7 +86,7 @@ for (let j = 0; j < operators.length; j++) {
 
 equal.addEventListener("click", () => {
     secondNumber = display.textContent;
-    display.textContent = getResult();
+    display.textContent = displayNumber(getResult());
     firstNumber = "";
     secondNumber = "";
     displayString = "";
@@ -96,6 +103,6 @@ clear.addEventListener("click", () => {
 
 back.addEventListener("click", () => {
     if (display.textContent != "") {
-        display.textContent = display.textContent.slice(0, -1);
+        display.textContent = displayNumber(display.textContent.slice(0, -1));
     }
 })
