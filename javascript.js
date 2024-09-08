@@ -28,6 +28,7 @@ let values = document.querySelectorAll(".value");
 let operators = document.querySelectorAll(".operator");
 let equal = document.querySelector(".equal");
 let clear = document.querySelector(".clearButton");
+let back = document.querySelector(".backSpace");
 
 for (let i = 0; i < values.length; i++) {
     const node = values[i];
@@ -46,7 +47,6 @@ for (let j = 0; j < operators.length; j++) {
         if (firstNumber != "") {
             equal.click();
         } else {
-            console.log('else');
             firstNumber = displayString;
         }
         displayString = "";
@@ -82,5 +82,12 @@ clear.addEventListener("click", () => {
     secondNumber = "";
     operator = "";
     displayString = "";
-    display.textContent = " ";
+    display.textContent = "";
+})
+
+back.addEventListener("click", () => {
+    if (display.textContent != "") {
+        display.textContent = display.textContent.slice(0, -1);
+        displayString = displayString.slice(0, -1);
+    }
 })

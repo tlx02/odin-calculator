@@ -28,7 +28,7 @@
 .clearRow {
     display: flex;
     padding: 4px;
-    justify-content: right;
+    justify-content: space-between;
     gap: 8px;
 }
 
@@ -40,10 +40,10 @@ button {
     background-color: aquamarine;
 }
 
-.operator, .equal, .clearButton {
+.operator, .equal, .clearButton, .backSpace {
     background-color:aqua;
 }
 
-.clearButton {
+.clearButton, .backSpace {
     width: 80px;
 }
